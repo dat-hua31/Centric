@@ -1,10 +1,12 @@
 #pragma once
 
+#include "core/window_manager.hpp"
+
 namespace centric::core
 {
   class Application {
   public:
-    Application() noexcept = default;
+    Application();
     ~Application() = default;
     
     Application(const Application&) = delete;
@@ -13,9 +15,11 @@ namespace centric::core
     Application(Application&&) = delete;
     Application& operator=(Application&&) = delete;
 
-    [[nodiscard]] bool initialize() noexcept;
+    void run();
+
   private:
-    bool is_initialized_{false};
-    bool is_looping_{false};
+    bool is_running_{false};
+
+    WindowManager window_manager_{};
   };
 }

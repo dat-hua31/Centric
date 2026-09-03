@@ -1,21 +1,26 @@
 #include "core/application.hpp"
+
 #include "core/logging.hpp"
+
+#include "raylib.h" // demonstration purpose
 
 namespace centric::core
 {
-  [[nodiscard]] bool Application::initialize() noexcept {
-    CT_ASSERT(!is_initialized_);
-    if (is_initialized_) {
-      CT_ERROR("Application::initialize called on an initialized application");
-      return false;
+  Application::Application() {
+    CT_INFO("Application::Application initialization succeeded");
+  }
+
+  void Application::run() {
+    CT_INFO("Application::run entering loop");
+    is_running_ = true;
+
+    while (is_running_ && !window_manager_.shouldClose()) {
+      ::BeginDrawing(); // demonstration purpose
+      ::ClearBackground(WHITE); // demonstration purpose
+
+      ::EndDrawing(); // demonstration purpose
     }
 
-    //...
-
-    is_looping_ = true;
-
-    is_initialized_ = true;
-    CT_INFO("Application::initialize succeeded");
-    return true;
+    CT_INFO("Application::run exiting loop");
   }
 }
