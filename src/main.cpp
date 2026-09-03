@@ -3,10 +3,6 @@
 
 int main() {
   centric::core::Application application{};  
-  
-  if (!application.initialize()) {
-    CT_FATAL("main failed to initialize application");
-  }
-
+  application.run();
   return 0;
 }
