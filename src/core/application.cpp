@@ -2,8 +2,6 @@
 
 #include "core/logging.hpp"
 
-#include "raylib.h" // demonstration purpose
-
 namespace centric::core
 {
   Application::Application() {
@@ -15,10 +13,10 @@ namespace centric::core
     is_running_ = true;
 
     while (is_running_ && !window_manager_.shouldClose()) {
-      ::BeginDrawing(); // demonstration purpose
-      ::ClearBackground(WHITE); // demonstration purpose
-
-      ::EndDrawing(); // demonstration purpose
+      if (render_engine_.beginFrame()) {
+        //...
+        render_engine_.endFrame();
+      }
     }
 
     CT_INFO("Application::run exiting loop");

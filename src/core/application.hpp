@@ -1,6 +1,7 @@
 #pragma once
 
 #include "core/window_manager.hpp"
+#include "render/render_engine.hpp"
 
 namespace centric::core
 {
@@ -21,5 +22,6 @@ namespace centric::core
     bool is_running_{false};
 
     WindowManager window_manager_{};
+    render::RenderEngine render_engine_{};
   };
 }
