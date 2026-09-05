@@ -24,6 +24,6 @@ namespace centric::particle
     void resize(std::size_t new_size);
     void clear() noexcept;
     [[nodiscard]] std::size_t size() const noexcept;
-    [[nodiscard]] bool empty() const noexcept;
+    [[nodiscard]] bool isEmpty() const noexcept;
   };
 }

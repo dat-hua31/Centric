@@ -42,7 +42,7 @@ namespace centric::particle
     return mass.size();
   }
 
-  bool ParticleSystem::empty() const noexcept {
+  bool ParticleSystem::isEmpty() const noexcept {
     return mass.empty();
   }
 }

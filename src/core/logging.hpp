@@ -18,21 +18,19 @@ namespace centric::core
     Fatal
   };
 
-  [[nodiscard]] constexpr std::string_view toString(LogLevel level) noexcept {
-    switch (level) {
-      case LogLevel::Debug: return "DEBUG";
-      case LogLevel::Info:  return "INFO";
-      case LogLevel::Warn:  return "WARN";
-      case LogLevel::Error: return "ERROR";
-      case LogLevel::Fatal: return "FATAL";
-    }
-    return "UNKNOWN";
-  }
-
   template <typename... Args>
   inline void log(LogLevel level, std::format_string<Args...> fmt, Args&&... args) {
+    std::string_view level_str{};
+    switch (level) {
+      case LogLevel::Debug: level_str = "DEBUG"; break;
+      case LogLevel::Info:  level_str = "INFO"; break;
+      case LogLevel::Warn:  level_str = "WARN"; break;
+      case LogLevel::Error: level_str = "ERROR"; break;
+      case LogLevel::Fatal: level_str = "FATAL"; break;
+      default:              level_str = "UNKNOWN"; break;
+    }
     auto& stream = (level == LogLevel::Error || level == LogLevel::Fatal) ? std::cerr : std::cout;
-    std::print(stream, "[{}] ", toString(level));
+    std::print(stream, "[{}] ", level_str);
     std::println(stream, fmt, std::forward<Args>(args)...);
   }
 }
