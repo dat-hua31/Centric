@@ -1,5 +1,7 @@
 #include "core/application.hpp"
 
+#include "core/window_manager.hpp"
+#include "render/render_engine.hpp"
 #include "core/logging.hpp"
 
 namespace centric::core
