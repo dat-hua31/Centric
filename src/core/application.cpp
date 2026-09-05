@@ -13,10 +13,9 @@ namespace centric::core
     is_running_ = true;
 
     while (is_running_ && !window_manager_.shouldClose()) {
-      if (render_engine_.beginFrame()) {
-        //...
-        render_engine_.endFrame();
-      }
+      render_engine_.beginFrame();
+      
+      render_engine_.endFrame();
     }
 
     CT_INFO("Application::run exiting loop");

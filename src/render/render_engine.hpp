@@ -9,10 +9,11 @@ namespace centric::render
 
     RenderEngine(const RenderEngine&) = delete;
     RenderEngine& operator=(const RenderEngine&) = delete;
+    
     RenderEngine(RenderEngine&&) = delete;
     RenderEngine& operator=(RenderEngine&&) = delete;
 
-    [[nodiscard]] bool beginFrame() const noexcept;
+    void beginFrame() const noexcept;
     void endFrame() const noexcept;
 
   private:

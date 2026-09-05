@@ -9,6 +9,7 @@ namespace centric::core
 
     WindowManager(const WindowManager&) = delete;
     WindowManager& operator=(const WindowManager&) = delete;
+    
     WindowManager(WindowManager&&) = delete;
     WindowManager& operator=(WindowManager&&) = delete;
 
