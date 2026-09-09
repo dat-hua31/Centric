@@ -1,10 +1,12 @@
 #pragma once
 
+#include "raylib.h"
+
 namespace centric::render
 {
   class RenderEngine {
   public:
-    RenderEngine() noexcept = default;
+    RenderEngine() noexcept;
     ~RenderEngine() = default;
 
     RenderEngine(const RenderEngine&) = delete;
@@ -17,5 +19,6 @@ namespace centric::render
     void endFrame() const noexcept;
 
   private:
+    ::Camera3D camera_{};
   };
 }
