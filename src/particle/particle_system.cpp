@@ -38,7 +38,7 @@ namespace centric::particle
     color.clear();
   }
 
-  std::size_t ParticleSystem::size() const noexcept {
+  std::size_t ParticleSystem::getSize() const noexcept {
     return mass.size();
   }
 

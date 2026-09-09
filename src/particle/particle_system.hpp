@@ -23,7 +23,7 @@ namespace centric::particle
     void reserve(std::size_t capacity);
     void resize(std::size_t new_size);
     void clear() noexcept;
-    [[nodiscard]] std::size_t size() const noexcept;
+    [[nodiscard]] std::size_t getSize() const noexcept;
     [[nodiscard]] bool isEmpty() const noexcept;
   };
 }
