@@ -24,6 +24,7 @@ namespace centric::particle
     velocity_x.resize(new_size);
     velocity_y.resize(new_size);
     velocity_z.resize(new_size);
+    radius.resize(new_size);
     color.resize(new_size);
   }
 
