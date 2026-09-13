@@ -21,13 +21,19 @@ namespace centric::core
     particle::ParticleSystem particle_system{};
     generator::UniformSphereParams params{
       .radius = 10.0,
-      .particle_count = 100
+      .particle_count = 100,
+      .particle_radius = 0.1,
+      .uniform_color = RED
     };
     generator::generateUniformSphere(rng, particle_system, params);
 
     while (is_running_ && !window_manager_.shouldClose()) {
       render_engine_.beginFrame();
-      //...
+      
+      render_engine_.begin3D();
+      render_engine_.render(particle_system);
+      render_engine_.end3D();
+
       render_engine_.endFrame();
     }
 

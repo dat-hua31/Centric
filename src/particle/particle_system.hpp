@@ -18,6 +18,7 @@ namespace centric::particle
     std::vector<double> velocity_y{};
     std::vector<double> velocity_z{};
 
+    std::vector<double> radius{};
     std::vector<::Color> color{};
 
     void reserve(std::size_t capacity);

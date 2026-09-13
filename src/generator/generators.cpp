@@ -15,11 +15,8 @@ namespace centric::generator
   ) {
     CT_ASSERT(params.radius >= 0.0);
     CT_ASSERT(params.total_mass >= 0.0);
-
-    if (params.particle_count == 0) {
-      CT_WARN("generateUniformSphere called with a 0 particle count parameter set");
-      return;
-    }
+    CT_ASSERT(params.particle_count > 0);
+    CT_ASSERT(params.particle_radius > 0.0);
 
     const std::size_t start_idx{particle_system.getSize()};
     particle_system.resize(start_idx + params.particle_count);
@@ -40,6 +37,7 @@ namespace centric::generator
       particle_system.position_y[idx] = params.origin_y + uy * params.radius;
       particle_system.position_z[idx] = params.origin_z + uz * params.radius;
       particle_system.mass[idx] = mass_per_particle;
+      particle_system.radius[idx] = params.particle_radius;
       particle_system.color[idx] = params.uniform_color;
     }
   }
