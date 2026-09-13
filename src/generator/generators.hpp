@@ -17,7 +17,8 @@ namespace centric::generator
     double radius{};
     double total_mass{1.0};
     std::size_t particle_count{1};
-    ::Color uniform_color{};
+    double particle_radius{1.0};
+    ::Color uniform_color{WHITE};
   };
 
   void generateUniformSphere(
