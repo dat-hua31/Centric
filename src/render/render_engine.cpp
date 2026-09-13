@@ -57,7 +57,7 @@ namespace centric::render
   void RenderEngine::render(const particle::ParticleSystem& particle_system) const {
     CT_ASSERT(::IsWindowReady());
     ::DrawGrid(10, 10);
-    auto it{renderers_.find(active_renderer_type)};
+    const auto it{renderers_.find(active_renderer_type)};
     CT_ASSERT(it != renderers_.end() && it->second);
     it->second->draw(particle_system);
   }

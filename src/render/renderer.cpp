@@ -10,7 +10,7 @@ namespace centric::render
 {
   void NaiveRenderer::draw(const particle::ParticleSystem& particle_system) {
     for (std::size_t i = 0; i < particle_system.getSize(); ++i) {
-      Vector3 position{
+      const Vector3 position{
         static_cast<float>(particle_system.position_x[i]),
         static_cast<float>(particle_system.position_y[i]),
         static_cast<float>(particle_system.position_z[i])

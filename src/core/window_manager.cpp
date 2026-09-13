@@ -13,9 +13,9 @@ namespace centric::core
       CT_FATAL("WindowManager::WindowManager failed to create window context");
     }
 
-    int current_monitor{::GetCurrentMonitor()};
-    int monitor_width{::GetMonitorWidth(current_monitor)};
-    int monitor_height{::GetMonitorHeight(current_monitor)};
+    const int current_monitor{::GetCurrentMonitor()};
+    const int monitor_width{::GetMonitorWidth(current_monitor)};
+    const int monitor_height{::GetMonitorHeight(current_monitor)};
     ::SetWindowSize(monitor_width * 0.9, monitor_height * 0.9);
     ::SetWindowPosition(monitor_width * 0.05, monitor_height * 0.05);
     ::SetTargetFPS(target_fps_);
