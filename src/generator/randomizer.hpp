@@ -10,7 +10,7 @@ namespace centric::generator
 {
   class Randomizer {
   public:
-    explicit Randomizer(std::uint64_t seed);
+    explicit Randomizer(std::uint64_t seed = 42);
 
     void setSeed(std::uint64_t seed);
     

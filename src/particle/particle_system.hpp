@@ -18,6 +18,10 @@ namespace centric::particle
     std::vector<double> velocity_y{};
     std::vector<double> velocity_z{};
 
+    std::vector<double> acceleration_x{};
+    std::vector<double> acceleration_y{};
+    std::vector<double> acceleration_z{};
+
     std::vector<double> radius{};
     std::vector<::Color> color{};
 

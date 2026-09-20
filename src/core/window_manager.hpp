@@ -14,6 +14,8 @@ namespace centric::core
     WindowManager& operator=(WindowManager&&) = delete;
 
     [[nodiscard]] bool shouldClose() const noexcept;
+    [[nodiscard]] double getTime() const noexcept;
+
   private:
     int target_fps_{60};
   };

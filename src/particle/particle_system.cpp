@@ -13,6 +13,10 @@ namespace centric::particle
     velocity_x.reserve(capacity);
     velocity_y.reserve(capacity);
     velocity_z.reserve(capacity);
+    acceleration_x.reserve(capacity);
+    acceleration_y.reserve(capacity);
+    acceleration_z.reserve(capacity);
+    radius.reserve(capacity);
     color.reserve(capacity);
   }
 
@@ -24,6 +28,9 @@ namespace centric::particle
     velocity_x.resize(new_size);
     velocity_y.resize(new_size);
     velocity_z.resize(new_size);
+    acceleration_x.resize(new_size);
+    acceleration_y.resize(new_size);
+    acceleration_z.resize(new_size);
     radius.resize(new_size);
     color.resize(new_size);
   }
@@ -36,6 +43,10 @@ namespace centric::particle
     velocity_x.clear();
     velocity_y.clear();
     velocity_z.clear();
+    acceleration_x.clear();
+    acceleration_y.clear();
+    acceleration_z.clear();
+    radius.clear();
     color.clear();
   }
 
