@@ -2,6 +2,7 @@
 
 #include "core/window_manager.hpp"
 #include "render/render_engine.hpp"
+#include "physics/physics_engine.hpp"
 
 namespace centric::core
 {
@@ -23,5 +24,6 @@ namespace centric::core
 
     WindowManager window_manager_{};
     render::RenderEngine render_engine_{};
+    physics::PhysicsEngine physics_engine_{};
   };
 }
