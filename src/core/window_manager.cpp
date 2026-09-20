@@ -29,6 +29,13 @@ namespace centric::core
     }
   }
 
+  double WindowManager::getTime() const noexcept {
+    if (!::IsWindowReady()) {
+      return 0.0;
+    }
+    return ::GetTime();
+  }
+
   bool WindowManager::shouldClose() const noexcept {
     if (!::IsWindowReady()) {
       return true;
