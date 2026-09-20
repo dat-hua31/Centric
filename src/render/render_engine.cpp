@@ -9,7 +9,9 @@
 
 namespace centric::render
 {
-  RenderEngine::RenderEngine() {
+  RenderEngine::RenderEngine(RendererType renderer_type) noexcept 
+    : active_renderer_type_(renderer_type)
+  {
     camera_ = {
       .position = {10.0f, 10.0f, 10.0f},
       .target = {0.0f, 0.0f, 0.0f},
@@ -37,6 +39,7 @@ namespace centric::render
   void RenderEngine::begin3D() const noexcept {
     CT_ASSERT(::IsWindowReady());
     ::BeginMode3D(camera_);
+    ::DrawGrid(10, 10);
   }
 
   void RenderEngine::end3D() const noexcept {
@@ -48,16 +51,14 @@ namespace centric::render
     renderers_[RendererType::NaiveRenderer] = std::make_unique<NaiveRenderer>();
   }
 
-  void RenderEngine::setActiveRenderer(RendererType type) {
-    if (renderers_.contains(type)) {
-      active_renderer_type = type;
-    }
+  void RenderEngine::setRenderer(RendererType type) {
+    CT_ASSERT(renderers_.contains(type));
+    active_renderer_type_ = type;
   }
 
-  void RenderEngine::render(const particle::ParticleSystem& particle_system) const {
+  void RenderEngine::render(const particle::ParticleSystem& particle_system) {
     CT_ASSERT(::IsWindowReady());
-    ::DrawGrid(10, 10);
-    const auto it{renderers_.find(active_renderer_type)};
+    const auto it{renderers_.find(active_renderer_type_)};
     CT_ASSERT(it != renderers_.end() && it->second);
     it->second->draw(particle_system);
   }
