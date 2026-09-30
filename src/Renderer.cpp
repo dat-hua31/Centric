@@ -1,12 +1,25 @@
 #include "Renderer.h"
 
+#include "IO/ParticleImporter.h"
+
 #include "raylib.h"
 #include "raymath.h"
 
 #include <vector>
 #include <cstddef>
+#include <stdexcept>
+#include <print>
 
-Renderer::Renderer() {
+Renderer::Renderer(int screenWidth, int screenHeight) {
+  ::SetTraceLogLevel(LOG_NONE);
+  ::InitWindow(screenWidth, screenHeight, "sim");
+
+  camera_.position = Vector3{ 15.0f, 15.0f, 15.0f };
+  camera_.target   = Vector3{ 0.0f, 0.0f, 0.0f };
+  camera_.up       = Vector3{ 0.0f, 1.0f, 0.0f };
+  camera_.fovy     = 45.0f;
+  camera_.projection = CAMERA_PERSPECTIVE;
+
   mesh_ = ::GenMeshSphere(0.1f, 4, 4);
   material_ = ::LoadMaterialDefault();
 
@@ -20,6 +33,32 @@ Renderer::Renderer() {
 Renderer::~Renderer() {
   ::UnloadMaterial(material_);
   ::UnloadMesh(mesh_);
+}
+
+void Renderer::render(ParticleImporter& importer, double fps)
+{
+  if (fps < 0.0) throw std::invalid_argument("FPS can only be a positive value");
+  ::SetTargetFPS(fps);
+
+  std::vector<float> positions;
+  while (!::WindowShouldClose()) {
+    ::UpdateCamera(&camera_, CAMERA_FREE);
+    
+    bool hasData = importer.loadNextFrame(positions);
+    if (!hasData) std::println("WARNING: Renderer::render tried to load a corrupted frame");
+
+    ::BeginDrawing();
+        ::ClearBackground(BLACK);
+
+        ::BeginMode3D(camera_);
+          ::DrawGrid(20, 1.0f);
+          if (hasData) draw(positions);
+        ::EndMode3D();
+
+        ::DrawFPS(10, 10);
+    ::EndDrawing();
+  }
+  ::CloseWindow();
 }
 
 void Renderer::draw(const std::vector<float>& positions) {

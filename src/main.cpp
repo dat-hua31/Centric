@@ -9,14 +9,8 @@
 #include "Renderer.h" 
 #include "Simulation.h"
 
-#include "raylib.h"
-
 #include <memory>
-#include <utility>
-#include <stdexcept>
 #include <cstddef>
-#include <string>
-#include <vector>
 #include <print>
 
 namespace
@@ -57,37 +51,9 @@ void simulateAndExport() {
 }
 
 void playback() {  
-  ::SetTraceLogLevel(LOG_NONE);
-  ::InitWindow(kScreenWidth, kScreenHeight, "sim");
-  ::SetTargetFPS(kRenderFPS);
-
-  ::Camera3D camera = { 0 };
-  camera.position = Vector3{ 15.0f, 15.0f, 15.0f };
-  camera.target   = Vector3{ 0.0f, 0.0f, 0.0f };
-  camera.up       = Vector3{ 0.0f, 1.0f, 0.0f };
-  camera.fovy     = 45.0f;
-  camera.projection = CAMERA_PERSPECTIVE;
-
   ParticleImporter importer("bin/sim.bin");
-
   Renderer renderer;
-  std::vector<float> positions;
-
-  while (!::WindowShouldClose()) {
-    ::UpdateCamera(&camera, CAMERA_FREE);
-
-    bool hasData = importer.loadNextFrame(positions);
-
-    ::BeginDrawing();
-        ::ClearBackground(BLACK);
-        ::BeginMode3D(camera);
-          ::DrawGrid(20, 1.0f);
-          if (hasData) renderer.draw(positions);
-        ::EndMode3D();
-        ::DrawFPS(10, 10);
-    ::EndDrawing();
-  }
-  ::CloseWindow();
+  renderer.render(importer, kRenderFPS);  
 }
 
 int main() {
