@@ -32,4 +32,28 @@ struct ParticleSystem {
     std::fill(ay.begin(), ay.end(), 0.0);
     std::fill(az.begin(), az.end(), 0.0);
   }
+
+  ParticleSystem& operator+=(const ParticleSystem& other) {
+    x.insert(x.end(), other.x.begin(), other.x.end());
+    y.insert(y.end(), other.y.begin(), other.y.end());
+    z.insert(z.end(), other.z.begin(), other.z.end());
+
+    vx.insert(vx.end(), other.vx.begin(), other.vx.end());
+    vy.insert(vy.end(), other.vy.begin(), other.vy.end());
+    vz.insert(vz.end(), other.vz.begin(), other.vz.end());
+
+    ax.insert(ax.end(), other.ax.begin(), other.ax.end());
+    ay.insert(ay.end(), other.ay.begin(), other.ay.end());
+    az.insert(az.end(), other.az.begin(), other.az.end());
+
+    mass.insert(mass.end(), other.mass.begin(), other.mass.end());
+
+    return *this;
+  }
+
+  [[nodiscard]] ParticleSystem operator+(const ParticleSystem& rhs) const {
+    ParticleSystem result = *this;
+    result += rhs;
+    return result;
+  }
 };

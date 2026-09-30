@@ -15,8 +15,8 @@
 
 namespace
 {
-  constexpr double kTotalSimTime = 10.0;
-  constexpr double kPhysicsDT = 0.001;
+  constexpr double kTotalSimTime = 30.0;
+  constexpr double kPhysicsDT = 1.0 / 120.0;
   constexpr double kRenderFPS = 60.0;
   constexpr std::size_t kPhysicsSteps = static_cast<std::size_t>(kTotalSimTime / kPhysicsDT);
   constexpr std::size_t kRenderFrames = static_cast<std::size_t>(kTotalSimTime * kRenderFPS);
@@ -27,8 +27,13 @@ namespace
 }
 
 void simulateAndExport() {
-  ParticleSystem sys;
-  Generator::generateSphere(sys, 100);
+  ParticleSystem sys1;
+  Generator::generateSphere(sys1, 100, 1.0, 10.0);
+
+  ParticleSystem sys2;
+  Generator::generateSphere(sys2, 100, 5.0, 1.0, 0.0, 0.0, 15.0);
+
+  ParticleSystem sys = sys1 + sys2;
 
   std::println("Total Particle Count: {}", sys.size());
   std::println("Total Simulation Time: {} seconds", kTotalSimTime);
