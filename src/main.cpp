@@ -57,7 +57,7 @@ void simulateAndExport() {
 
 void playback() {  
   ParticleImporter importer("bin/sim.bin");
-  Renderer renderer;
+  Renderer renderer(1800, 1000);
   renderer.render(importer, kRenderFPS);  
 }
 

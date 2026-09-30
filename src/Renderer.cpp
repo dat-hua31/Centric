@@ -13,11 +13,12 @@
 Renderer::Renderer(int screenWidth, int screenHeight) {
   ::SetTraceLogLevel(LOG_NONE);
   ::InitWindow(screenWidth, screenHeight, "sim");
+  ::DisableCursor();
 
   camera_.position = Vector3{ 15.0f, 15.0f, 15.0f };
   camera_.target   = Vector3{ 0.0f, 0.0f, 0.0f };
   camera_.up       = Vector3{ 0.0f, 1.0f, 0.0f };
-  camera_.fovy     = 45.0f;
+  camera_.fovy     = 70.0f;
   camera_.projection = CAMERA_PERSPECTIVE;
 
   mesh_ = ::GenMeshSphere(0.1f, 4, 4);
